@@ -12,7 +12,7 @@ Usage
 Composer install…
 
     $ docker run --user $(shell id -u):$(shell id -g) -v ~/.composer:/.composer -v .:/var/www/html cubicmushroom/composer install
-    # or 
+    # or, as default command is install
     $ docker run --user $(shell id -u):$(shell id -g) -v ~/.composer:/.composer -v .:/var/www/html cubicmushroom/composer
 
 Composer update…
@@ -26,6 +26,8 @@ Composer require…
 
 ### Using docker-compose
 
+#### `docker-composer.yml` file
+
     # docker-composer.yml
     version: '2'
     services:
@@ -35,3 +37,19 @@ Composer require…
         volumes:
           - ~/.composer:/.composer
           - .:/src
+
+#### Commands…
+
+Composer install…
+
+    $ docker-compose run --user $(shell id -u):$(shell id -g) composer install
+    # or, as default command is install 
+    $ docker-compose run --user $(shell id -u):$(shell id -g) composer 
+
+Composer update…
+
+    $ docker-compose run --user $(shell id -u):$(shell id -g) composer update
+
+Composer require…
+
+    $ docker-compose run --user $(shell id -u):$(shell id -g) composer require symfony/symfony
